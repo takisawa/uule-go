@@ -2,6 +2,8 @@ package uule
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var (
@@ -10,14 +12,16 @@ var (
 )
 
 func TestEncode(t *testing.T) {
-	if Encode(location_name) != uule {
-		t.Errorf("Encode(%q) = %q", location_name, uule)
-	}
+	assert := assert.New(t)
+
+	assert.Equal(uule, Encode(location_name), "Invalid encoded string.")
 }
 
 func TestDecode(t *testing.T) {
-	lname, _ := Decode(uule)
-	if lname != location_name {
-		t.Errorf("Dncode(%q) = %q", uule, location_name)
-	}
+	assert := assert.New(t)
+
+	lname, err := Decode(uule)
+
+	assert.Nil(err)
+	assert.Equal(location_name, lname, "Invalid decoded string.")
 }
