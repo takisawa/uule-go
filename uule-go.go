@@ -1,4 +1,4 @@
-package uule_go
+package uule
 
 import (
 	"encoding/base64"
